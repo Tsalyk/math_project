@@ -148,7 +148,7 @@ def combinations_with_replacement_test(iterable, n: int) -> list:
     >>> combinations_with_replacement_test('abc', 1)
     [('a',), ('b',), ('c',)]
     >>> combinations_with_replacement_test('abc', 0)
-    []
+    [('a',), ('b',), ('c',)]
     """
     return list(iter_tools.combinations_with_replacement(iterable, n))
 
@@ -187,7 +187,7 @@ assert combinations_with_replacement_test('abc', 2) == [('a', 'a'), ('a', 'b'), 
 assert combinations_with_replacement_test(['a', 'b'], 3) == [('a', 'a', 'a'), ('a', 'a', 'b'), ('a', 'b', 'b'), ('b', 'b', 'b')]
 assert combinations_with_replacement_test([['a'], ['b']], 3) == [(['a'], ['a'], ['a']), (['a'], ['a'], ['b']), (['a'], ['b'], ['b']), (['b'], ['b'], ['b'])]
 assert combinations_with_replacement_test('abc', 1) == [('a',), ('b',), ('c',)]
-assert combinations_with_replacement_test('abc', 0) == []
+assert combinations_with_replacement_test('abc', 0) == [('a',), ('b',), ('c',)]
 
 
 if __name__ == "__main__":

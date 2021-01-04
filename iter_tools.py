@@ -161,15 +161,32 @@ def combinations_with_replacement(iterable: Iterable, n: int) -> Generator:
     Usage:
     combinations_with_replacement(list(range(2)), 2) -> (0, 0), (0, 1), (1, 1)
     """
-    if n == 0:
-        return []
+    el_lst = []
+    counter = 2
 
-    replacement_lst = list(product(iterable, repeat=n))
-    replacement_lst = list(map(sorted, sorted(replacement_lst)))
+    if n < 2:
+        for el in iterable:
+            yield tuple(str(el))
+        return None
 
-    for item in reversed(replacement_lst):
-        if replacement_lst.count(item) > 1:
-            replacement_lst.remove(item)
+    for el in range(len(iterable)):
+        for subel in range(el, len(iterable)):
+            el_lst.append([iterable[el], iterable[subel]])
 
-    for el in sorted(replacement_lst):
+    while counter != n:
+        new_lst = []
+        for subel in iterable:
+            for ind in range(len(el_lst)):
+                part = sorted(el_lst[ind] + [subel])
+
+                if part in new_lst:
+                    continue
+                new_lst.append(part)
+
+        el_lst = new_lst
+        counter += 1
+
+    el_lst = sorted(el_lst)
+
+    for el in el_lst:
         yield tuple(el)
